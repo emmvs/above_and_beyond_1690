@@ -1,10 +1,26 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'restaurants#index'
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  resources :restaurants do
+  # NESTED RESOURCES
+    resources :reviews, only: [:new, :create]
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Nested routes
+  # Collection (Costum index page for several items that belong to parent)
+      # Index page | DO not Have the id
+    collection do
+      # get 'restaurants/top', to: 'restaurants#top'
+      # get 'top'
+      get :top
+    end
+
+    member do
+      # Show page | Have the id
+      # get 'restaurants/:id/chef', to: 'restaurants#chef'
+      get 'chef'
+    end
+  end
+
+  resources :reviews, only: [:destroy]
+  # get '/restaurants', to: 'restaurants#index'
 end

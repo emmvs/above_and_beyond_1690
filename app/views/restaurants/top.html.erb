@@ -1,0 +1,11 @@
+<div class="container mt-3">
+  <%= link_to '🏠', root_path, class: 'btn' %>
+  <h1>These are the top restaurants!!!</h1>
+
+  <% @restaurants.each do |restaurant| %>
+    <div class="card m-4 p-3">
+      <%= render restaurant %>
+      <%= link_to "Show this restaurant", restaurant %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<div class="container mt-3">
+  <%= link_to '🏠', root_path, class: 'btn' %>
+  <!-- /restaurants/:restaurant_id/reviews/new -->
+  <%= simple_form_for([@restaurant, @review]) do |f| %>
+
+    <div class="form-inputs">
+      <%= f.input :content %>
+      <%= f.input :username %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+
+  <% end %>
+</div>

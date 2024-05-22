@@ -1,0 +1,27 @@
+<div class="container mt-3">
+  <p style="color: green"><%= notice %></p>
+  <%= link_to '🏠', root_path, class: 'btn' %>
+
+  <%= render @restaurant %>
+
+  <div>
+    <% @restaurant.reviews.each do |review| %>
+      <div class="card m-4 p-3">
+        <p><%= review.content %></p>
+        <p>- <%= review.username %></p>
+        <%= link_to '🗑️', review_path(review.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure???" }, class: "btn" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <!-- BUTTON: Add a review for resto -->
+    <%= link_to 'Add a Review 🤩', new_restaurant_review_path(@restaurant.id), class: 'btn btn-outline-primary mb-2' %>
+    <br>
+    <%= link_to 'Show me the chef 👩🏼‍🍳', chef_restaurant_path, class: 'btn btn-outline-primary mb-2' %>
+    <br>
+    <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant), class: 'btn btn-outline-primary mb-2' %>
+    <br>
+    <%= button_to "Destroy this restaurant", @restaurant, method: :delete, class: 'btn btn-outline-primary' %>
+  </div>
+</div>
